@@ -33,11 +33,13 @@ def askURL(suspiciousURL):
         requestURL = (xforceURL + "/url/" + suspiciousURL)
         response = requests.get(requestURL, params='', headers=http_headers, timeout=30)
         logger.debug("Request sent to: %s\n", requestURL)
-        logger.debug("Response: %s - %s\n", response.text, type(response))
+        if response.status_code == 200:
+            logger.debug("Response: %s - %s\n", response.json(), type(response))
+            logger.info(json.dumps(response.json(), indent=4, sort_keys=True))
+        else:
+            logger.debug("Request unsuccessful. HTTP Response Code: %s\n", response.status_code)
 
-        all_json = response.json()
 
-        json.dumps(all_json, indent=4, sort_keys=True)
 
     except:
         logger.error("Cannot complete operation for %s\n", suspiciousURL)
