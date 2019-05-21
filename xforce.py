@@ -36,6 +36,7 @@ def askURL(suspiciousURL):
         if response.status_code == 200:
             logger.debug("Response: %s - %s\n", response.json(), type(response))
             logger.info(json.dumps(response.json(), indent=4, sort_keys=True))
+            return response.json()
         else:
             logger.debug("Request unsuccessful. HTTP Response Code: %s\n", response.status_code)
 

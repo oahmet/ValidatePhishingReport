@@ -37,7 +37,9 @@ urls = extractURL('<html><head><title>Test</title></head>'
         '<body><h1>sdgsdg</h1><a href="https://panel.vargakragard.se">aa</a> sdgsdgsg <a href="http://example.com">dg</a>"</body></html>')
 
 
-# Ask URL to X-force
+# Ask URL to X-Force
 
 for url in urls:
-    xforce.askURL(url)
+    result = xforce.askURL(url)
+
+
